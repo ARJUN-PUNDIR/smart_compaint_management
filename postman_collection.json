@@ -1,0 +1,162 @@
+{
+  "info": {
+    "_postman_id": "e8e50b84-b040-4f51-b8f2-53b7c2ccf39f",
+    "name": "Smart Complaint Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/auth/register",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Complaints",
+      "item": [
+        {
+          "name": "Create Complaint",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"title\": \"Pipe Burst on Main Street\",\n  \"description\": \"There is a massive water leak happening right now. The road is flooding.\",\n  \"category\": \"Water\",\n  \"location\": \"Main Street\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/complaints",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "complaints"]
+            }
+          }
+        },
+        {
+          "name": "Get All Complaints",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE" }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/complaints",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "complaints"]
+            }
+          }
+        },
+        {
+          "name": "Search Complaints",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE" }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/complaints/search?location=Main Street",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "complaints", "search"],
+              "query": [
+                { "key": "location", "value": "Main Street" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Complaint Status (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"In Progress\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/complaints/COMPLAINT_ID_HERE",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "complaints", "COMPLAINT_ID_HERE"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "AI",
+      "item": [
+        {
+          "name": "Analyze Complaint",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"The street light outside my house is completely broken, causing safety issues at night.\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/ai/analyze",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "ai", "analyze"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
