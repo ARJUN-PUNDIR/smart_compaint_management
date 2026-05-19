@@ -35,7 +35,6 @@ const AIAnalysisResult = () => {
         }
 
         // Trigger AI Analysis
-        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
         const aiRes = await axios.post(`${API_URL}/api/ai/analyze`, 
           { description: compRes.data.description },
           { headers: { Authorization: `Bearer ${token}` } }
