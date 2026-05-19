@@ -15,7 +15,8 @@ const AIAnalysisResult = () => {
     const fetchAndAnalyze = async () => {
       try {
         const token = localStorage.getItem('token');
-        const compRes = await axios.get(`http://localhost:5000/api/complaints/${id}`, {
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const compRes = await axios.get(`${API_URL}/api/complaints/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         
@@ -34,7 +35,8 @@ const AIAnalysisResult = () => {
         }
 
         // Trigger AI Analysis
-        const aiRes = await axios.post(`http://localhost:5000/api/ai/analyze`, 
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const aiRes = await axios.post(`${API_URL}/api/ai/analyze`, 
           { description: compRes.data.description },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -53,7 +55,8 @@ const AIAnalysisResult = () => {
     setSaving(true);
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/complaints/${id}`, {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      await axios.put(`${API_URL}/api/complaints/${id}`, {
         aiPriority: analysis.priority,
         aiDepartment: analysis.department,
         aiSummary: analysis.summary,

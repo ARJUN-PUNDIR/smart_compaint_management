@@ -14,7 +14,8 @@ const NewComplaint = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post('http://localhost:5000/api/complaints', formData, {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const res = await axios.post(`${API_URL}/api/complaints`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Navigate to analysis page automatically

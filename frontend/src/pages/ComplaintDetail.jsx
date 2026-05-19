@@ -18,7 +18,8 @@ const ComplaintDetail = () => {
     const fetchComplaint = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:5000/api/complaints/${id}`, {
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const res = await axios.get(`${API_URL}/api/complaints/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setComplaint(res.data);
@@ -36,7 +37,8 @@ const ComplaintDetail = () => {
     setUpdating(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.put(`http://localhost:5000/api/complaints/${id}`, 
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const res = await axios.put(`${API_URL}/api/complaints/${id}`, 
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );
